@@ -21,7 +21,7 @@ app.use(cookieParser())
 
 app.use(httpLogger)
 app.use("/api/auth",authRoutes);
-app.use("/api/message",messageRoutes);
+app.use("/api/messages",messageRoutes);
 app.use("/api/users",userRoutes)
 app.get("/",(req,res)=>{
     res.send("Hello world");

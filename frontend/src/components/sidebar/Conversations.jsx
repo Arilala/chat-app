@@ -3,14 +3,15 @@ import Conversation from "./Conversation";
 import { getRandomEmoji } from "../../utils/emojis.js";
 export const Conversations = () => {
   const { loading, conversations } = useGetConversations();
-  console.log({ loading, conversations });
+
   return (
     <div className="py-2 flex flex-col overflow-auto">
-      {conversations.map((conversation,) => (
+      {conversations.map((conversation, idx) => (
         <Conversation
           key={conversation._id}
           conversation={conversation}
           emoji={getRandomEmoji()}
+          lastIdx={idx === conversations.length - 1}
         />
       ))}
 
