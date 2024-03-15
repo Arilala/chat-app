@@ -13,7 +13,6 @@ export const signup = async (req, res) => {
 
     const user = await User.findOne({ userName });
 
-    console.log(user)
 
     if (user) {
       logger.warn(` User ${userName}  already exists`);

@@ -2,6 +2,7 @@ import logger from "../logger/logger.js";
 import User from "../models/user.model.js";
 import Conversation from "../models/conversation.model.js"
 import Message from "../models/message.model.js"
+import { getReceiverSocketId, io } from "../socket/socket.js";
 export const sendMessage = async (req, res) => {
 	try {
 
@@ -34,6 +35,13 @@ export const sendMessage = async (req, res) => {
 
 
         Promise.all([conversation.save(),newMessage.save()])
+
+        const receiverSocketId = getReceiverSocketId(receiveerId)
+
+        if(receiverSocketId){
+           
+            io.to(receiverSocketId).emit("newMessage",newMessage)
+        }
 
       return  res.status(201).json(newMessage)
 	} catch (error) {

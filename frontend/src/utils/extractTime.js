@@ -1,6 +1,8 @@
 export function extractTime(dateString) {
-    console.log(dateString)
-	const date = new Date(dateString);
+	let date = new Date();
+	if(dateString){
+			date = new Date(dateString);
+	}
 	const hours = padZero(date.getHours());
 	const minutes = padZero(date.getMinutes());
 	return `${hours}:${minutes}`;
