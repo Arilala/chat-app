@@ -42,4 +42,9 @@ io.on("connection", (socket)=>{
 })
 
 
+export const newUserSuscrub =()=>{
+    io.emit("getOnlineUsers", Object.keys(userSocketMap))
+}
+
+
 export {app,io,server}

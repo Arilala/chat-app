@@ -2,6 +2,7 @@ import logger from "../logger/logger.js";
 import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import dayjs from "dayjs";
+import {newUserSuscrub}  from "../socket/socket.js";
 import {generateTokenAndSetCookie} from "../utils/generateToken.js";
 export const signup = async (req, res) => {
   try {
@@ -41,6 +42,7 @@ export const signup = async (req, res) => {
           "YYYY-MM-DD HH:mm:ss"
         )}`
       );
+      newUserSuscrub();
       return res.status(201).json({
         id: newUser._id,
         fullName: newUser.fullName,
